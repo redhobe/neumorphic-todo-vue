@@ -1,0 +1,289 @@
+@import './variables';
+@import "~font-awesome/css/font-awesome.min.css";
+
+
+%button-gradient {
+  background: linear-gradient(225deg, #ffffff, #d7d6d6);
+  box-shadow: -3px 3px 6px #c4c3c3,
+  3px -3px 6px #ffffff;
+}
+
+%button-gradient-active {
+  background: linear-gradient(225deg, #d7d6d6, #ffffff);
+  box-shadow: -3px 3px 7px #cbcaca,
+  3px -3px 7px #ffffff;
+}
+
+body {
+  background-color: $main-color;
+}
+
+input[type="checkbox"], a, button, select {
+  cursor: pointer;
+}
+
+h4 {
+  font-size: 9pt;
+}
+
+#app {
+  margin: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Open Sans", sans-serif;
+}
+
+textarea {
+  color: #545454;
+  background: $main-color;
+  font-size: 15pt;
+  font-weight: normal;
+  padding: 6px 10px 0 10px;
+  resize: none;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  outline: none;
+  border: none;
+  word-wrap: break-word;
+
+  &[readonly] {
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  textarea {
+    width: 90%;
+    margin-top: 10px;
+  }
+  #app {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  textarea {
+    width: 85%;
+    margin: 0 0 0 5px;
+  }
+  #app {
+    -webkit-appearance: none;
+    width: 80%;
+  }
+}
+
+
+.inputArea {
+  border: none;
+  border-radius: 10px;
+  background: $main-color;
+  -webkit-appearance: none;
+  box-shadow: inset -6px 6px 12px #d2d1d1,
+  inset 6px -6px 12px #ffffff;
+}
+
+.animate {
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+.roundButton {
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 12pt;
+  color: lightgray;
+  border: none;
+  border-radius: 50px;
+  @extend %button-gradient;
+
+  &:active {
+    @extend %button-gradient-active;
+  }
+}
+
+button {
+  &:active, &:focus {
+    outline: none;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
+
+.addTodoWrapper {
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addTaskLine {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 10pt;
+}
+
+.addButton {
+  padding: 0;
+  min-height: 50px;
+  min-width: 50px;
+  font-size: 16pt;
+  color: mediumseagreen;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  @extend %button-gradient;
+  &:active{
+    @extend %button-gradient-active
+  }
+}
+
+.taskButtons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0 0 0;
+
+  button {
+    margin: 0 10px 15px 0;
+    color: gray;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 10px;
+    background: $main-color;
+    box-shadow: -5px 5px 10px #bababa,
+    5px -5px 10px #ffffff;
+
+
+    &:hover {
+      color: salmon;
+    }
+
+    &:active {
+      @extend %button-gradient-active
+    }
+  }
+}
+
+select {
+  font-weight: bold;
+  color: gray;
+  width: 150px;
+  height: 33px;
+  padding: 10px;
+  border-radius: 10px;
+  background: $main-color;
+  box-shadow: -5px 5px 10px #bababa,
+  5px -5px 10px #ffffff;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.filters {
+  margin-bottom: 15px;
+
+  label {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      right: 12px;
+      top: -2px;
+      font-family: FontAwesome;
+      content: '\f0dd';
+      color: gray;
+      pointer-events: none;
+    }
+  }
+}
+
+.todosList {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+
+  li {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 10px;
+    background: $main-color;
+    box-shadow: -5px 5px 10px #d2d1d1,
+    5px -5px 10px #ffffff;
+
+    &:hover {
+      -webkit-transform: scale(1.02);
+    }
+
+    .toggle {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      opacity: 0;
+      z-index: 9999;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      + label {
+        background: linear-gradient(225deg, #ffffff, #d7d6d6);
+        float: left;
+        line-height: 30px;
+        text-align: center;
+        padding: 0;
+      }
+    }
+
+    &.completed {
+      label {
+        background: linear-gradient(225deg, #d7d6d6, #ffffff);
+        color: mediumseagreen;
+      }
+
+      textarea {
+        text-decoration: line-through;
+        color: gray;
+      }
+    }
+  }
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &:hover {
+    color: salmon;
+  }
+}
+
+.editButton {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+
+  &:hover {
+    color: goldenrod;
+  }
+}
